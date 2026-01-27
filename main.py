@@ -1,9 +1,7 @@
 from flask import Flask
 
-app = Flask(__name__)
+app = Flask(__name__) # 架設伺服器
 
-@app.route("/")
+@app.route("/") # 路徑 
 def hello():
-    return "I am alive"
-
-app.run(host="0.0.0.0", port=5000)
+    return "OK"
