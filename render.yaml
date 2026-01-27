@@ -1,0 +1,5 @@
+services:
+  - type: web
+    name: turbowarp-server
+    env: python
+    startCommand: python main.py
