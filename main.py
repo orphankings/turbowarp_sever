@@ -30,7 +30,20 @@ def register():
         return jsonify({"ok": False, "msg": "user exists"})
     
     players[username] = {
-        "password": password
+        "password": password, # 密碼
+        "value":{
+            "level": 1,
+            "xp": 0,
+            "money": 0,
+            "gold": 0,
+            "diamond": 0,
+            "hero": [],
+            "equipment": [],
+            "tactics": [],
+            "stone": [],
+            "item": [],
+            "task":[]
+        }
     }
 
     save_players()
