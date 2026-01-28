@@ -39,7 +39,7 @@ def register():
             "gold": 0,
             "diamond": 0,
             
-            "satge": {
+            "stage": {
                 "main": {
                     "current": 1,
                     "clear": []
@@ -61,7 +61,7 @@ def register():
             "item": [],
             
             "activity": {},
-            "gacha": [],
+            "gacha": {},
             
             "task":[]
         }
