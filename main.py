@@ -3,13 +3,6 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__) # 架設伺服器
 
-if __name__ == "__main__":
-    # Render 會提供 PORT 環境變數
-    import os
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
-
-
 def load_players():
     try:
         with open("data/players.json", "r", encoding="utf-8") as f:
@@ -108,6 +101,12 @@ def update():
     players[username]["data"] = data
     save_players()
     return jsonify({"ok": True})
+
+if __name__ == "__main__":
+    # Render 會提供 PORT 環境變數
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
 
 
 
