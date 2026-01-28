@@ -27,6 +27,10 @@ players = load_players()
 def hello():
     return "sever working"
 
+@app.route("/favicon.ico")
+def favicon():
+    return "", 204
+
 @app.route("/register", methods=["POST"]) # 註冊
 def register():
     req = request.json
