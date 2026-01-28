@@ -22,26 +22,47 @@ def hello():
 
 @app.route("/register", methods=["POST"]) # 註冊
 def register():
-    data = request.json
-    username = data["username"]
-    password = data["password"]
+    req = request.json
+    username = req["username"]
+    password = req["password"]
     
     if username in players:
         return jsonify({"ok": False, "msg": "user exists"})
     
     players[username] = {
         "password": password, # 密碼
-        "value":{
+        "data":{
             "level": 1,
             "xp": 0,
+            
             "money": 0,
             "gold": 0,
             "diamond": 0,
+            
+            "satge": {
+                "main": {
+                    "current": 1,
+                    "clear": []
+                },
+                "bosstower": {
+                    "current": 1,
+                    "clear": []
+                },
+                "trail": {
+                    "current": 1,
+                    "clear": []
+                }
+            },
+            
             "hero": [],
             "equipment": [],
             "tactics": [],
             "stone": [],
             "item": [],
+            
+            "activity": {},
+            "gacha": [],
+            
             "task":[]
         }
     }
@@ -52,9 +73,9 @@ def register():
 
 @app.route("/login", methods=["POST"]) # 登入
 def login():
-    data = request.json
-    username = data["username"]
-    password = data["password"]
+    req = request.json
+    username = req["username"]
+    password = req["password"]
     
     if username not in players:
         return jsonify({"ok": False, "msg": "no such user"})
@@ -66,14 +87,14 @@ def login():
 
 @app.route("/update", methods=["POST"]) # 玩家資料更新
 def update():
-    data = request.json
-    username = data["username"]
-    value = data.get("value")
+    req = request.json
+    username = req["username"]
+    data = req.get("data")
     
     if username not in players:
         return jsonify({"ok": False, "msg": "error"})
     
-    players[username]["value"] = value
+    players[username]["data"] = data
     save_players()
     return jsonify({"ok": True})
 
