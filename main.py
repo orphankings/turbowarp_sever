@@ -1,7 +1,9 @@
 import json
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__) # 架設伺服器
+CORS(app)  # 允許所有來源跨域
 
 def load_players():
     try:
